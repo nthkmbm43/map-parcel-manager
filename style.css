@@ -331,3 +331,72 @@ body {
   font-size: 0.85rem;
   color: var(--text-light);
 }
+
+/* ==========================================
+   Responsive Design (Mobile Support)
+   ========================================== */
+
+/* สำหรับ Tablet */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 320px;
+  }
+}
+
+/* สำหรับ Mobile */
+@media (max-width: 768px) {
+  body {
+    overflow: auto; /* ยอมให้ scroll หน้าหลักได้ถ้าจำเป็น */
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .app-container {
+    flex-direction: column; /* สลับแผนที่ไว้บน รายการไว้นล่าง */
+    overflow: visible;
+  }
+
+  .map-section {
+    height: 50vh; /* แผนที่กินพื้นที่ครึ่งหน้าจอ */
+    min-height: 350px;
+    flex: none;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border-color);
+    flex: 1;
+    overflow: visible;
+  }
+
+  .parcel-list {
+    overflow: visible; /* ให้เลื่อนตามหน้าเว็บหลัก */
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+}
+
+/* สำหรับมือถือจอเล็กมาก */
+@media (max-width: 480px) {
+  .app-header {
+    padding: 0.75rem 1rem;
+  }
+  
+  .logo h1 {
+    font-size: 1rem;
+  }
+
+  .sidebar-header {
+    padding: 1rem;
+  }
+  
+  .parcel-card {
+    padding: 0.75rem;
+  }
+}
