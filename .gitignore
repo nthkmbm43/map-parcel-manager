@@ -1,0 +1,6 @@
+# Exclude testing/plan files
+MAP_APP_PLAN.md
+
+# OS files
+.DS_Store
+Thumbs.db

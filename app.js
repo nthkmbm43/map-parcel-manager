@@ -248,6 +248,9 @@ function renderParcelList() {
 
 // ฟังก์ชันซูมไปที่แปลง
 window.zoomToParcel = function(id) {
+  // เลื่อนขึ้นไปที่แผนที่อัตโนมัติ (มีประโยชน์มากบนมือถือ)
+  document.getElementById('map').scrollIntoView({ behavior: 'smooth', block: 'center' });
+
   let found = false;
   drawnItems.eachLayer(function(layer) {
     if (layer.parcelId === id) {
