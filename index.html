@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map Parcel Manager</title>
+  
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-draw/dist/leaflet.draw.css"/>
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="style.css?v=2"/>
+</head>
+<body>
+  <!-- Navbar / Header -->
+  <header class="app-header">
+    <div class="logo">
+      <span class="icon">🗺️</span>
+      <h1>Map Parcel Manager</h1>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+    <!-- Map Area -->
+    <div class="map-section">
+      <div id="map"></div>
+    </div>
+    
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <h2>📋 รายการแปลง</h2>
+        <button id="add-parcel-btn" class="btn-primary" style="display:none;">+ เพิ่มแปลง</button>
+      </div>
+      <div class="parcel-list" id="parcel-list">
+        <!-- รายการแปลงจะถูก render ที่นี่ -->
+        <div class="empty-state">
+          <p>ยังไม่มีข้อมูลแปลงที่ดิน</p>
+          <p class="sub-text">คลิกไอคอนรูปห้าเหลี่ยมบนแผนที่เพื่อเริ่มวาด</p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Modal for Parcel Details (Hidden by default) -->
+  <div id="parcel-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>✨ บันทึกข้อมูลแปลง</h3>
+        <button class="close-modal" id="close-modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="parcel-form">
+          <div class="form-group">
+            <label for="parcel-name">ชื่อแปลง <span class="required">*</span></label>
+            <input type="text" id="parcel-name" required placeholder="เช่น แปลง A - นาข้าว">
+          </div>
+          <div class="form-group">
+            <label for="parcel-owner">เจ้าของ</label>
+            <input type="text" id="parcel-owner" placeholder="ชื่อเจ้าของที่ดิน">
+          </div>
+          <div class="form-group">
+            <label>ขนาดพื้นที่ที่คำนวณได้</label>
+            <div id="calculated-area" class="area-display">
+              <span id="area-rai">0 ไร่ 0 งาน 0 ตร.วา</span>
+              <small id="area-sqm">(0 ตร.ม.)</small>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="parcel-note">หมายเหตุ</label>
+            <textarea id="parcel-note" rows="3" placeholder="ข้อมูลเพิ่มเติม..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="parcel-image-upload">แนบรูปภาพเพิ่มเติม 📸 <small>(เช่น รูปที่ดิน, รูปโฉนด)</small></label>
+            <input type="file" id="parcel-image-upload" accept="image/*" style="padding: 0.5rem;">
+            <div id="image-preview-container" style="display: none; margin-top: 10px;">
+              <img id="image-preview" src="" alt="Preview" style="max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color);">
+              <button type="button" id="remove-image-btn" class="btn-secondary" style="margin-top: 5px; width: 100%; color: var(--danger-color); border-color: var(--danger-color);">❌ ลบรูปภาพที่แนบ</button>
+            </div>
+          </div>
+          
+          <div class="modal-actions">
+            <button type="button" class="btn-secondary" id="cancel-modal">ยกเลิก</button>
+            <button type="submit" class="btn-primary">💾 บันทึกแปลง</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-draw/dist/leaflet.draw.js"></script>
+  <script src="https://unpkg.com/@turf/turf/turf.min.js"></script>
+  <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+  <script src="app.js?v=4"></script>
+</body>
+</html>
