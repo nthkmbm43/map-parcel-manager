@@ -344,41 +344,44 @@ body {
 }
 
 /* สำหรับ Mobile */
-@media (max-width: 768px) {
+@media (max-width: 992px) {
   body {
-    overflow: auto; /* ยอมให้ scroll หน้าหลักได้ถ้าจำเป็น */
+    overflow-y: auto;
     height: auto;
     min-height: 100vh;
   }
 
   .app-container {
-    flex-direction: column; /* สลับแผนที่ไว้บน รายการไว้นล่าง */
+    flex-direction: column;
+    height: auto;
     overflow: visible;
   }
 
   .map-section {
-    height: 50vh; /* แผนที่กินพื้นที่ครึ่งหน้าจอ */
-    min-height: 350px;
+    height: 45vh;
+    min-height: 300px;
+    width: 100%;
     flex: none;
   }
 
   .sidebar {
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-left: none;
     border-top: 1px solid var(--border-color);
-    flex: 1;
+    flex: none;
     overflow: visible;
   }
 
   .parcel-list {
-    overflow: visible; /* ให้เลื่อนตามหน้าเว็บหลัก */
+    overflow: visible;
+    padding-bottom: 2rem;
   }
 
   .modal-content {
     width: 95%;
-    max-height: 90vh;
-    overflow-y: auto;
+    max-height: 95vh;
+    margin: 10px auto;
   }
 }
 
